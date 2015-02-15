@@ -4,13 +4,13 @@ from threading import Thread
 
 
 def extractandsay():
-    print "welcome to The Hindu"
-    speech.say("welcome to The Hindu")
-    print "Choose genre :  News  Business  Sports  Entertainment "
-    speech.say("Choose genre :  News  Business  Sports  Entertainment ")
+    print "welcome to Deccan herald"
+    speech.say("welcome to Deccan Herald")
+    print "Choose genre  : News Business Sports Entertainment"
+    speech.say("Choose genre  : News Business Sports Entertainment")
     numb = speech.input()
-    print "say yes if you want me to read the news. else no."
-    speech.say('say yes if you want me to read the news. else no.')
+    print "Say yes if you want me to read the news. Else no"
+    speech.say("Say yes if you want me to read the news. Else no")
     answ = speech.input()
     sps = True if 's' in answ.lower() else False
     if sps:
@@ -20,8 +20,8 @@ def extractandsay():
                     title = item.findAll('title')[0].text
                     print title
                     speech.say(title + '.')
-                    print "say yes if you want me to read it in detail. else no."
-                    speech.say("say yes if you want me to read it in detail. else no.")
+                    print "Say yes if you want me to read it in detail? Else no"
+                    speech.say("Say yes if you want me to read it in detail? Else no")
                     ans = speech.input()
                     sp = True if 's' in ans.lower() else False
                     if sp:
@@ -38,8 +38,8 @@ def extractandsay():
                     title = item.findAll('title')[0].text
                     print title
                     speech.say(title + '.')
-                    print "say yes if you want me to read it in detail. else no"
-                    speech.say("say yes if you want me to read it in detail. else no")
+                    print "Say yes if you want me to read it in detail? Else no"
+                    speech.say("Say yes if you want me to read it in detail? Else no")
                     ans = speech.input()
                     sp = True if 's' in ans.lower() else False
                     if sp:
@@ -56,8 +56,8 @@ def extractandsay():
                     title = item.findAll('title')[0].text
                     print title
                     speech.say(title + '.')
-                    print "say yes if you want me to read it in detail. else no"
-                    speech.say("say yes if you want me to read it in detail. else no")
+                    print "Say yes if you want me to read it in detail? Else no"
+                    speech.say("Say yes if you want me to read it in detail? Else no")
                     ans = speech.input()
                     sp = True if 's' in ans.lower() else False
                     if sp:
@@ -74,8 +74,8 @@ def extractandsay():
                     title = item.findAll('title')[0].text
                     print title
                     speech.say(title + '.')
-                    print "say yes if you want me to read it in detail. else no"
-                    speech.say("say yes if you want me to read it in detail. else no")
+                    print "Say yes if you want me to read it in detail? Else no"
+                    speech.say("Say yes if you want me to read it in detail? Else no")
                     ans = speech.input()
                     sp = True if 's' in ans.lower() else False
                     if sp:
@@ -87,17 +87,16 @@ def extractandsay():
             Thread(target=readentertainment, args=(b4,)).start()
 
 
-url1 = "http://www.thehindu.com/news/?service=rss"
+url1 = "http://www.deccanherald.com/rss/news.rss"
 b1 = BeautifulSoup(requests.get(url1).content)
 
-url2 = "http://www.thehindu.com/business/?service=rss"
+url2 = "http://www.deccanherald.com/rss/business.rss"
 b2 = BeautifulSoup(requests.get(url2).content)
 
-url3 = "http://www.thehindu.com/sport/?service=rss"
+url3 = "http://www.deccanherald.com/rss/sports.rss"
 b3 = BeautifulSoup(requests.get(url3).content)
 
-url4 = "http://www.thehindu.com/entertainment/?service=rss"
+url4 = "http://www.deccanherald.com/rss/entertainment.rss"
 b4 = BeautifulSoup(requests.get(url4).content)
-
 if __name__ == '__main__':
     extractandsay()

@@ -7,6 +7,8 @@ import time
 
 def main():
     while True:
+        speech.say("help")
+        speech.say("guide")
         speech.say("What should I search for?")
         search = speech.input("What should I search for?")
         speech.say("Did you mean " + search + "?")
@@ -21,7 +23,7 @@ def main():
     brks = '\[\d*\]'
     br = re.compile(brks)
     b = BeautifulSoup(urllib2.urlopen(url).read())
-    p = b.("p")
+    p = b("p")
     if "may refer to" in str(p[0]) or "no results" in str(p[0]):
         print "Oops, exact match not found, please try again.. "
         exit(0)

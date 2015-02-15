@@ -4,10 +4,10 @@ from threading import Thread
 
 
 def extractandsay():
-    print "welcome to The Hindu"
-    speech.say("welcome to The Hindu")
-    print "Choose genre :  News  Business  Sports  Entertainment "
-    speech.say("Choose genre :  News  Business  Sports  Entertainment ")
+    print "welcome to The Indian Express"
+    speech.say("welcome to The Indian Express")
+    print "Choose genre :  News  Politics  Sports  Entertainment"
+    speech.say("Choose genre :  News  Politics  Sports  Entertainment")
     numb = speech.input()
     print "say yes if you want me to read the news. else no."
     speech.say('say yes if you want me to read the news. else no.')
@@ -32,8 +32,8 @@ def extractandsay():
 
             Thread(target=readnews, args=(b1,)).start()
 
-        elif 'business' in numb.lower():
-            def readbusiness(b2):
+        elif 'politics' in numb.lower():
+            def readpolitics(b2):
                 for item in b2.findAll('item'):
                     title = item.findAll('title')[0].text
                     print title
@@ -48,7 +48,7 @@ def extractandsay():
                         speech.say(description + '.')
                     time.sleep(.5)
 
-            Thread(target=readbusiness, args=(b2,)).start()
+            Thread(target=readpolitics, args=(b2,)).start()
 
         elif 'sport' in numb.lower():
             def readsports(b3):
@@ -87,17 +87,16 @@ def extractandsay():
             Thread(target=readentertainment, args=(b4,)).start()
 
 
-url1 = "http://www.thehindu.com/news/?service=rss"
+url1 = "http://indianexpress.com/section/india/feed/"
 b1 = BeautifulSoup(requests.get(url1).content)
 
-url2 = "http://www.thehindu.com/business/?service=rss"
+url2 = "http://indianexpress.com/section/india/politics/feed/"
 b2 = BeautifulSoup(requests.get(url2).content)
 
-url3 = "http://www.thehindu.com/sport/?service=rss"
+url3 = "http://indianexpress.com/section/sports/feed/"
 b3 = BeautifulSoup(requests.get(url3).content)
 
-url4 = "http://www.thehindu.com/entertainment/?service=rss"
+url4 = "http://indianexpress.com/section/entertainment/feed/"
 b4 = BeautifulSoup(requests.get(url4).content)
-
 if __name__ == '__main__':
     extractandsay()
