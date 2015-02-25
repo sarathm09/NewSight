@@ -1,11 +1,9 @@
 import requests, time, speech
 from BeautifulSoup import BeautifulSoup
-from threading import Thread
-
 
 def extractandsay():
-    print "welcome to NewSight"
-    speech.say("welcome to NewSight")
+    print "welcome to NewSight application"
+    speech.say("welcome to NewSight application")
 
     print "If you want guidelines, say yes. Else say no to proceed to read news"
     speech.say("If you want guidelines, say yes. Else say not to proceed to read news")
@@ -35,8 +33,7 @@ def extractandsay():
                 print "say yes if you want me to read the news. else no."
                 speech.say('say yes if you want me to read the news. else no.')
                 answ = speech.input()
-                sps = True if 's' in answ.lower() else False
-                if sps:
+                if 's' in answ.lower():
                     if 'news' in numb.lower():
                         def readnews(b11):
                             for item in b11.findAll('item'):
@@ -55,7 +52,7 @@ def extractandsay():
                                     hindu()
                                 time.sleep(.5)
 
-                        Thread(target=readnews, args=(b11,)).start()
+                        readnews(b11)
 
                     elif 'business' in numb.lower():
                         def readbusiness(b12):
@@ -75,7 +72,7 @@ def extractandsay():
                                     hindu()
                                 time.sleep(.5)
 
-                        Thread(target=readbusiness, args=(b12,)).start()
+                        readbusiness(b12)
 
                     elif 'sport' in numb.lower():
                         def readsports(b13):
@@ -95,7 +92,7 @@ def extractandsay():
                                     hindu()
                                 time.sleep(.5)
 
-                        Thread(target=readsports, args=(b13,)).start()
+                        readsports(b13)
 
                     elif 'entertainment' in numb.lower():
                         def readentertainment(b14):
@@ -114,7 +111,10 @@ def extractandsay():
                                 elif 'back' in ans.lower():
                                     hindu()
                                 time.sleep(.5)
-                        Thread(target=readentertainment, args=(b14,)).start()
+                        readentertainment(b14)
+
+                elif 'no' in answ.lower():
+                    extractandsay()
 
             url11 = "http://www.thehindu.com/news/?service=rss"
             b11 = BeautifulSoup(requests.get(url11).content)
@@ -128,7 +128,7 @@ def extractandsay():
             url14 = "http://www.thehindu.com/entertainment/?service=rss"
             b14 = BeautifulSoup(requests.get(url14).content)
 
-            Thread(target=hindu())
+            hindu()
 
         elif "deccan" in pap.lower():
             def deccan():
@@ -160,7 +160,7 @@ def extractandsay():
                                     deccan()
                                 time.sleep(.5)
 
-                        Thread(target=readnews, args=(b21,)).start()
+                        readnews(b21)
 
                     elif 'business' in numb.lower():
                         def readbusiness(b22):
@@ -180,7 +180,7 @@ def extractandsay():
                                     deccan()
                                 time.sleep(.5)
 
-                        Thread(target=readbusiness, args=(b22,)).start()
+                        readbusiness(b22)
 
                     elif 'sport' in numb.lower():
                         def readsports(b23):
@@ -200,7 +200,7 @@ def extractandsay():
                                     deccan()
                                 time.sleep(.5)
 
-                        Thread(target=readsports, args=(b23,)).start()
+                        readsports(b23)
 
                     elif 'entertainment' in numb.lower():
                         def readentertainment(b24):
@@ -220,7 +220,10 @@ def extractandsay():
                                     deccan()
                                 time.sleep(.5)
 
-                        Thread(target=readentertainment, args=(b24,)).start()
+                        readentertainment(b24)
+
+                elif 'no' in answ.lower():
+                    extractandsay()
 
             url21 = "http://www.deccanherald.com/rss/news.rss"
             b21 = BeautifulSoup(requests.get(url21).content)
@@ -234,7 +237,7 @@ def extractandsay():
             url24 = "http://www.deccanherald.com/rss/entertainment.rss"
             b24 = BeautifulSoup(requests.get(url24).content)
 
-            Thread(target=deccan())
+            deccan()
 
         elif "indian express" in pap.lower():
             def indian():
@@ -266,7 +269,7 @@ def extractandsay():
                                     indian()
                                 time.sleep(.5)
 
-                        Thread(target=readnews, args=(b31,)).start()
+                        readnews(b31)
 
                     elif 'politics' in numb.lower():
                         def readpolitics(b32):
@@ -286,7 +289,7 @@ def extractandsay():
                                     indian()
                                 time.sleep(.5)
 
-                        Thread(target=readpolitics, args=(b32,)).start()
+                        readpolitics(b32)
 
                     elif 'sport' in numb.lower():
                         def readsports(b33):
@@ -306,7 +309,7 @@ def extractandsay():
                                     indian()
                                 time.sleep(.5)
 
-                        Thread(target=readsports, args=(b33,)).start()
+                        readsports(b33)
 
                     elif 'entertainment' in numb.lower():
                         def readentertainment(b34):
@@ -326,7 +329,10 @@ def extractandsay():
                                     indian()
                                 time.sleep(.5)
 
-                        Thread(target=readentertainment, args=(b34,)).start()
+                        readentertainment(b34)
+
+                elif 'no' in answ.lower():
+                    extractandsay()
 
             url31 = "http://indianexpress.com/section/india/feed/"
             b31 = BeautifulSoup(requests.get(url31).content)
@@ -340,7 +346,7 @@ def extractandsay():
             url34 = "http://indianexpress.com/section/entertainment/feed/"
             b34 = BeautifulSoup(requests.get(url34).content)
 
-            Thread(target=indian())
+            indian()
 
 if __name__ == '__main__':
     extractandsay()

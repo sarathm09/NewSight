@@ -51,11 +51,12 @@ def extractandsay():
                                     description = item.findAll('description')[0].text
                                     print description
                                     speech.say(description + '.')
-                                elif 'back' in ans.lower():
+                                if 'back' in ans.lower():
                                     hindu()
                                 time.sleep(.5)
-
-                        Thread(target=readnews, args=(b11,)).start()
+                        url11 = "http://www.thehindu.com/news/?service=rss"
+                        b11 = BeautifulSoup(requests.get(url11).content)
+                        readnews(b11)
 
                     elif 'business' in numb.lower():
                         def readbusiness(b12):
@@ -71,11 +72,12 @@ def extractandsay():
                                     description = item.findAll('description')[0].text
                                     print description
                                     speech.say(description + '.')
-                                elif 'back' in ans.lower():
+                                if 'back' in ans.lower():
                                     hindu()
                                 time.sleep(.5)
-
-                        Thread(target=readbusiness, args=(b12,)).start()
+                        url12 = "http://www.thehindu.com/business/?service=rss"
+                        b12 = BeautifulSoup(requests.get(url12).content)
+                        readbusiness(b12)
 
                     elif 'sport' in numb.lower():
                         def readsports(b13):
@@ -91,11 +93,12 @@ def extractandsay():
                                     description = item.findAll('description')[0].text
                                     print description
                                     speech.say(description + '.')
-                                elif 'back' in ans.lower():
+                                if 'back' in ans.lower():
                                     hindu()
                                 time.sleep(.5)
-
-                        Thread(target=readsports, args=(b13,)).start()
+                        url13 = "http://www.thehindu.com/sport/?service=rss"
+                        b13 = BeautifulSoup(requests.get(url13).content)
+                        readsports(b13)
 
                     elif 'entertainment' in numb.lower():
                         def readentertainment(b14):
@@ -111,24 +114,15 @@ def extractandsay():
                                     description = item.findAll('description')[0].text
                                     print description
                                     speech.say(description + '.')
-                                elif 'back' in ans.lower():
+                                if 'back' in ans.lower():
                                     hindu()
                                 time.sleep(.5)
-                        Thread(target=readentertainment, args=(b14,)).start()
 
-            url11 = "http://www.thehindu.com/news/?service=rss"
-            b11 = BeautifulSoup(requests.get(url11).content)
+                        url14 = "http://www.thehindu.com/entertainment/?service=rss"
+                        b14 = BeautifulSoup(requests.get(url14).content)
+                        readentertainment(b14)
 
-            url12 = "http://www.thehindu.com/business/?service=rss"
-            b12 = BeautifulSoup(requests.get(url12).content)
-
-            url13 = "http://www.thehindu.com/sport/?service=rss"
-            b13 = BeautifulSoup(requests.get(url13).content)
-
-            url14 = "http://www.thehindu.com/entertainment/?service=rss"
-            b14 = BeautifulSoup(requests.get(url14).content)
-
-            Thread(target=hindu())
+            hindu()
 
         elif "deccan" in pap.lower():
             def deccan():
